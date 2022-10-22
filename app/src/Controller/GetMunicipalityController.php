@@ -23,4 +23,21 @@ class GetMunicipalityController extends AbstractController
     {
         return new JsonResponse(['municipality' => (array) $municipalityRepository->find($municipalityId)]);
     }
+
+    #[Route(
+        '/municipalities',
+        name: 'getMunicipalities',
+        methods: ['GET', 'HEAD']
+    )]
+    public function getMunicipalities(
+        MunicipalityRepositoryInterface $municipalityRepository
+    ): ?JsonResponse
+    {
+        $serializerMunicipalities = [];
+        foreach ($municipalityRepository->findAll() as $municipality) {
+            $serializerMunicipalities[] = (array) $municipality;
+        }
+
+        return new JsonResponse($serializerMunicipalities);
+    }
 }
