@@ -25,7 +25,7 @@ class LargestPopulationCommunityController extends AbstractController
         requirements: ['firstCommunity' => '\d+', 'secondCommunity' => '\d+'],
         methods: ['GET', 'HEAD']
     )]
-    public function getLargestPopulationCommunity(int $firstCommunity, int $secondCommunity): Response
+    public function getLargestPopulationCommunity(int $firstCommunity, int $secondCommunity): JsonResponse
     {
         $largestPopulationCommunity = $this->largestPopulationCommunity->getLargestPopulationCommunity($firstCommunity, $secondCommunity);
 
