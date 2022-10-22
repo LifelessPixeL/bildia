@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Community;
+use App\Interface\CommunityRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,7 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Community[]    findAll()
  * @method Community[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CommunityRepository extends ServiceEntityRepository
+class CommunityRepository extends ServiceEntityRepository implements CommunityRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
