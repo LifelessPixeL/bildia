@@ -11,4 +11,6 @@ interface MunicipalityRepositoryInterface
      * @return ?Municipality[]
      */
     public function findMunicipalitiesByIds(array $municipalitiesIds): ?array;
+
+    public function find(int $municipalityId);
 }
