@@ -29,4 +29,11 @@ class MunicipalityRepository extends ServiceEntityRepository implements Municipa
 
         return $qb->execute();
     }
+
+    public function save(Municipality $municipality): void
+    {
+        $this->_em->persist($municipality);
+
+        $this->_em->flush();
+    }
 }

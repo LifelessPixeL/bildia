@@ -18,4 +18,6 @@ interface MunicipalityRepositoryInterface
      * @return ?Municipality[]
      */
     public function findAll();
+
+    public function save(Municipality $municipality): void;
 }
