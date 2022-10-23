@@ -37,4 +37,9 @@ class ProvinceRepository extends ServiceEntityRepository implements ProvinceRepo
 
         return $qb->getOneOrNullResult();
     }
+
+    public function update(): void
+    {
+        $this->_em->flush();
+    }
 }

@@ -19,14 +19,14 @@ class DeleteMunicipalityController extends AbstractController
         methods: ['DELETE']
     )]
     public function deleteMunicipality(
-        Request $request,
+        int $municipalityId,
         DeleteMunicipalityService $deleteMunicipalityService
     ): ?JsonResponse
     {
-        $deleteMunicipalityService->delete($request->get('municipalityId'));
+        $deleteMunicipalityService->delete($municipalityId);
 
         return new JsonResponse([
             'success' => true
-        ], Response::HTTP_CREATED);
+        ], Response::HTTP_OK);
     }
 }
