@@ -6,6 +6,7 @@ use App\Repository\ProvinceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProvinceRepository::class)]
 class Province
@@ -16,23 +17,35 @@ class Province
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 1,
+        max: 255,
+    )]
     private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 1,
+        max: 255,
+    )]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'province', targetEntity: Municipality::class, orphanRemoval: true)]
+    #[Assert\NotNull]
     private Collection $municipalities;
 
     #[ORM\ManyToOne(inversedBy: 'provinces')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull]
     private ?Community $community = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull]
     private ?Municipality $capital = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
     private ?int $population = null;
 
     public function __construct()

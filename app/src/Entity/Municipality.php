@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MunicipalityRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MunicipalityRepository::class)]
 class Municipality
@@ -14,19 +15,30 @@ class Municipality
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 1,
+        max: 255,
+    )]
     private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 1,
+        max: 255,
+    )]
     private ?string $name = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?float $latitude = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?float $longitude = null;
 
     #[ORM\ManyToOne(inversedBy: 'municipalities')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotNull]
     private ?Province $province = null;
 
     /**
