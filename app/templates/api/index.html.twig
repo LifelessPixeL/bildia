@@ -3,6 +3,11 @@
 
 {% block body %}
     <div class="container">
+        <div id="js-ajax-message" class="toast position-fixed top-0 end-0 text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body" id="js-ajax-message-content">
+                Hello, world! This is a toast message.
+            </div>
+        </div>
         <header class="bg-primary py-3 ps-5 text-white">
             <div>
                 <h1>API - Prueba Bildia</h1>
@@ -12,21 +17,29 @@
         <div>
             <div class="py-5">
                 <h3 class="float-start text-primary ps-3">Municipios</h3>
-                <button class="float-end btn border border-1" title="Añadir municipio"><i class="fa-solid fa-plus text-success"></i> Añadir municipio</button>
+                <button class="float-end btn border border-1" title="Añadir municipio"
+                        data-bs-toggle="modal" data-bs-target="#newMunicipalityModal">
+                    <i class="fa-solid fa-plus text-success"></i> Añadir municipio
+                </button>
             </div>
             <table class="table mt-4">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th></th>
                     <th scope="col">Nombre</th>
+                    <th></th>
                     <th scope="col">Latitud</th>
+                    <th></th>
                     <th scope="col">Longitud</th>
-                    <th scope="col"><i class="fa-solid fa-gears"></i></th> {#Actions#}
+                    <th></th>
+                    <th scope="col"></th> {#Actions#}
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody id="js-table-municipality-body">
                     <tr>
-                        <td colspan="5" class="pt-5 border-0 text-center text-primary">
+                        <td colspan="10" class="pt-5 border-0 text-center text-primary">
                             <div class="spinner-border" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>
@@ -36,4 +49,76 @@
             </table>
         </div>
     </div>
+
+    <script id="template-table-municipality-error" type="x-tmpl-mustache">
+    {% verbatim %}
+        <tr>
+            <td colspan="5" class="pt-5 border-0 text-center text-dark">
+                <span>Se ha producido un error</span>
+            </td>
+        </tr>
+    {% endverbatim %}
+    </script>
+
+    <script id="template-table-municipality" type="template/text">
+    {% verbatim %}
+        {{#rows}}
+            <tr id="js-table-municipality-row-{{id}}">
+                <td>{{id}}<td>
+                <td>{{name}}<td>
+                <td>{{latitude}}<td>
+                <td>{{longitude}}<td>
+                <td>
+                    <button class="btn float-end js-trigger-delete-municipality" title="Borrar municipio"
+                        data-municipality-name="{{name}}" data-municipality-id="{{id}}" >
+                        <i class="fa-solid fa-trash" data-municipality-name="{{name}}" data-municipality-id="{{id}}"></i>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+        {{/rows}}
+    {% endverbatim %}
+    </script>
+
+    <!-- Modal new municipality-->
+    <div class="modal fade" id="newMunicipalityModal" tabindex="-1" role="dialog" aria-labelledby="newMunicipalityModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newMunicipalityModalLabel">Añadir municipio</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal delete municipality -->
+    <div class="modal fade" id="deleteMunicipalityModal" tabindex="-1" role="dialog" aria-labelledby="deleteMunicipalityModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteMunicipalityModalLabel">Borrar municipio</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Quiéres borrar definitivamente el municipio <span id="delete-municipality-modal-name"></span>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="js-municipality-deleter">Borrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
