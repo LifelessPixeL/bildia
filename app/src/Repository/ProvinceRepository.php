@@ -7,6 +7,7 @@ use App\Entity\Province;
 use App\Interface\ProvinceRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -41,5 +42,31 @@ class ProvinceRepository extends ServiceEntityRepository implements ProvinceRepo
     public function update(): void
     {
         $this->_em->flush();
+    }
+
+    /**
+     * @throws NoResultException|NonUniqueResultException
+     */
+    public function getProvincesTotalPopulation(array $provincesIds)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.id IN (:provincesIds)')
+            ->setParameter('provincesIds', implode(',', $provincesIds))
+            ->select('SUM(p.population) as totalPopulation')
+            ->getQuery();
+
+        return $qb->getSingleScalarResult();
+    }
+
+    /**
+     * @throws NoResultException|NonUniqueResultException
+     */
+    public function getAllProvincesPopulation()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->select('SUM(p.population) as totalPopulation')
+            ->getQuery();
+
+        return $qb->getSingleScalarResult();
     }
 }

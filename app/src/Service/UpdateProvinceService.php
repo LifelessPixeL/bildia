@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Interface\ProvinceRepositoryInterface;
+use App\Interface\UpdateProvinceInterface;
 
 class UpdateProvinceService implements UpdateProvinceInterface
 {
