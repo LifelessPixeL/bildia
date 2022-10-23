@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\DeleteMunicipalityService;
+use App\Interface\DeleteMunicipalityInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +19,7 @@ class DeleteMunicipalityController extends AbstractController
     )]
     public function deleteMunicipality(
         int $municipalityId,
-        DeleteMunicipalityService $deleteMunicipalityService
+        DeleteMunicipalityInterface $deleteMunicipalityService
     ): ?JsonResponse
     {
         $deleteMunicipalityService->delete($municipalityId);

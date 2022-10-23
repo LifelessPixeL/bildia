@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Interface\GetMunicipalitiesInterface;
 use App\Interface\MunicipalityRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api', name: 'api_')]
@@ -30,14 +32,12 @@ class GetMunicipalityController extends AbstractController
         methods: ['GET', 'HEAD']
     )]
     public function getMunicipalities(
-        MunicipalityRepositoryInterface $municipalityRepository
+        GetMunicipalitiesInterface $getMunicipalitiesService,
     ): ?JsonResponse
     {
-        $serializerMunicipalities = [];
-        foreach ($municipalityRepository->findAll() as $municipality) {
-            $serializerMunicipalities[] = (array) $municipality;
-        }
-
-        return new JsonResponse($serializerMunicipalities);
+        return new JsonResponse([
+            'success' => true,
+            'data' => $getMunicipalitiesService->getMunicipalities(),
+        ], Response::HTTP_OK);
     }
 }
