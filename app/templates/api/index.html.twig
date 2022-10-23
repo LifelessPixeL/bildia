@@ -2,19 +2,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>API</h1>
-
-    <table>
-        <body>
-
-        </body>
-    </table>
-
-    <template>
-        <tr>
-            <td id=""></td>
-            <td id=""></td>
-            <td id=""></td>
-        </tr>
-    </template>
+    <div class="container">
+        <header class="bg-primary py-3 ps-5 text-white">
+            <div>
+                <h1>API - Prueba Bildia</h1>
+                <small>Rebeca Martín</small>
+            </div>
+        </header>
+        <div>
+            <div class="py-5">
+                <h3 class="float-start text-primary ps-3">Municipios</h3>
+                <button class="float-end btn border border-1" title="Añadir municipio"><i class="fa-solid fa-plus text-success"></i> Añadir municipio</button>
+            </div>
+            <table class="table mt-4">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Latitud</th>
+                    <th scope="col">Longitud</th>
+                    <th scope="col"><i class="fa-solid fa-gears"></i></th> {#Actions#}
+                </tr>
+                </thead>
+                <tbody id="js-table-municipality-body">
+                    <tr>
+                        <td colspan="5" class="pt-5 border-0 text-center text-primary">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
