@@ -36,4 +36,11 @@ class MunicipalityRepository extends ServiceEntityRepository implements Municipa
 
         $this->_em->flush();
     }
+
+    public function delete(Municipality $municipality): void
+    {
+        $this->_em->remove($municipality);
+
+        $this->_em->flush();
+    }
 }

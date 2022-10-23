@@ -20,4 +20,6 @@ interface MunicipalityRepositoryInterface
     public function findAll();
 
     public function save(Municipality $municipality): void;
+
+    public function delete(Municipality $municipality): void;
 }
