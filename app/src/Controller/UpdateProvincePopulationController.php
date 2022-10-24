@@ -10,12 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
 
+#[Route('/api', name: 'api_')]
 class UpdateProvincePopulationController extends AbstractController
 {
     /**
      * Update province population
      *
-     * @Route("/api/province/{provinceId}", methods={"PUT"})
+     * @Route("/province/{provinceId}", methods={"PUT"})
      * @OA\Response(
      *     response=200,
      *     description="Success or Error",
