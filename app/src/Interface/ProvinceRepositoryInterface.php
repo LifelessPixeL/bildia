@@ -16,4 +16,6 @@ interface ProvinceRepositoryInterface
     public function getProvincesTotalPopulation(array $provincesIds);
 
     public function getAllProvincesPopulation();
+
+    public function first();
 }

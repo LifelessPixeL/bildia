@@ -26,9 +26,8 @@ class SaveMunicipalityController extends AbstractController
         $name = $request->get('name');
         $latitude = $request->get('latitude');
         $longitude = $request->get('longitude');
-        $provinceId = $request->get('provinceId');
 
-        $saveMunicipality->saveMunicipality($slug, $name, $latitude, $longitude, $provinceId);
+        $saveMunicipality->saveMunicipality($slug, $name, $latitude, $longitude);
 
         return new JsonResponse([
             'success' => true

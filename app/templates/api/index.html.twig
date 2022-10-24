@@ -5,10 +5,19 @@
     <div class="container">
         <div id="js-ajax-message" class="toast position-fixed top-0 end-0 text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-body" id="js-ajax-message-content">
-                Hello, world! This is a toast message.
             </div>
         </div>
-        <header class="bg-primary py-3 ps-5 text-white">
+        <div class="position-fixed bottom-0 end-0 me-3 mb-3">
+            <div class="row">
+                <div class="col-6 p-3">
+                    <a href="#header"><i class="fa-solid fa-arrow-up fa-xl text-primary"></i></a>
+                </div>
+                <div class="col-6 p-3">
+                    <a href="#footer"><i class="fa-solid fa-arrow-down fa-xl text-primary"></i></a>
+                </div>
+            </div>
+        </div>
+        <header class="bg-primary py-3 ps-5 text-white" id="header">
             <div>
                 <h1>API - Prueba Bildia</h1>
                 <small>Rebeca Martín</small>
@@ -17,9 +26,8 @@
         <div>
             <div class="py-5">
                 <h3 class="float-start text-primary ps-3">Municipios</h3>
-                <button class="float-end btn border border-1" title="Añadir municipio"
-                        data-bs-toggle="modal" data-bs-target="#newMunicipalityModal">
-                    <i class="fa-solid fa-plus text-success"></i> Añadir municipio
+                <button class="float-end btn border border-1" id="js-button-add-municipality" title="Añadir municipio">
+                    <span class="text-primary"><i class="fa-solid fa-plus"></i> Añadir municipio</span>
                 </button>
             </div>
             <table class="table mt-4">
@@ -49,7 +57,7 @@
             </table>
         </div>
     </div>
-
+    <footer id="footer"></footer>
     <script id="template-table-municipality-error" type="x-tmpl-mustache">
     {% verbatim %}
         <tr>
@@ -86,16 +94,34 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="newMunicipalityModalLabel">Añadir municipio</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <form id="js-form-new-municipality">
+                        <div class="mb-3 mt-3">
+                            <label for="name" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="name" placeholder="Nombre" name="name" required>
+                            <div class="invalid-feedback">Dato requerido</div>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="slug" class="form-label">Slug:</label>
+                            <input type="text" class="form-control" id="slug" placeholder="Slug" name="slug" required>
+                            <div class="invalid-feedback">Dato requerido</div>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="latitude" class="form-label">Latitud:</label>
+                            <input type="text" class="form-control" id="latitude" placeholder="Latitud" name="latitude" required>
+                            <div class="invalid-feedback">Dato requerido</div>
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="longitude" class="form-label">Longitud:</label>
+                            <input type="text" class="form-control" id="mlongitude" placeholder="Longitud" name="longitude" required>
+                            <div class="invalid-feedback">Dato requerido</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary float-end">Enviar</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -107,7 +133,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteMunicipalityModalLabel">Borrar municipio</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -115,7 +141,7 @@
                     <p>¿Quiéres borrar definitivamente el municipio <span id="delete-municipality-modal-name"></span>?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" id="js-municipality-deleter">Borrar</button>
+                    <button type="button" class="btn btn-primary" id="js-municipality-deleter">Borrar</button>
                 </div>
             </div>
         </div>

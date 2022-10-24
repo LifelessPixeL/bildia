@@ -5,13 +5,16 @@ import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min';
 const templateRow = $('#template-table-municipality').html();
 const templateError = $('#template-table-municipality-empty').html();
 
-const modalDeleteElement = document.getElementById('deleteMunicipalityModal');
-let modalDelete = new bootstrap.Modal(modalDeleteElement, {});
+const modalDeleteMunicipality = document.getElementById('deleteMunicipalityModal');
+let modalDelete = new bootstrap.Modal(modalDeleteMunicipality, {});
 let currentDeleteMunicipalityId = null;
+
+const modalCreateMunicipality = document.getElementById('newMunicipalityModal');
+let modalCreate = new bootstrap.Modal(modalCreateMunicipality, {});
 
 const toast = document.getElementById('js-ajax-message');
 
-modalDeleteElement.addEventListener('hidden.bs.modal', function (event) {
+modalDeleteMunicipality.addEventListener('hidden.bs.modal', function (event) {
     currentDeleteMunicipalityId = null;
 });
 
@@ -23,7 +26,6 @@ function showToastMessage(message) {
 function drawRows(rows) {
     let renderHtmlRows = Mustache.render(templateRow, {'rows': rows});
     $('#js-table-municipality-body').html(renderHtmlRows);
-    showToastMessage('Municipio borrado correctamente');
 }
 
 function drawError() {
@@ -34,7 +36,7 @@ function loadMunicipalities() {
     $.ajax({
         url: '/api/municipalities',
         type: 'GET',
-        cache: false,
+        cache: true,
         dataType: 'json',
         success: function (result) {
             if (result.success === true) {
@@ -86,15 +88,38 @@ function addClickEventToConfirmMunicipalityDeletion() {
     $('#js-municipality-deleter').on('click', confirmMunicipalityDeletion);
 }
 
-function enableAlertSystem() {
-    $('.alert').each(function (alert) {
-        new bootstrap.Alert(alert)
+function addSubmitEventToNewMunicipalityForm() {
+    $('#js-form-new-municipality').on('submit', function () {
+        const form = this;
+        $.ajax({
+            url: `/api/municipality`,
+            type: 'POST',
+            cache: false,
+            dataType: 'json',
+            data: $(form).serialize(),
+            success: function (result) {
+                modalCreate.hide();
+                $(form).trigger("reset");
+                if (result.success === true) {
+                    showToastMessage('Municipio creado correctamente');
+                    loadMunicipalities();
+                }
+            }
+        });
+        return false;
     });
 }
+
+function addClickEventToAddMunicipalityButton() {
+    $('#js-button-add-municipality').on('click', function () {
+        modalCreate.show();
+    });
+} 
 
 export default function() {
     loadMunicipalities();
     addClickEventToMunicipalityDeleteButton();
     addClickEventToConfirmMunicipalityDeletion();
-    enableAlertSystem();
+    addClickEventToAddMunicipalityButton();
+    addSubmitEventToNewMunicipalityForm();
 };

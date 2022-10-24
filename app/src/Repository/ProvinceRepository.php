@@ -69,4 +69,16 @@ class ProvinceRepository extends ServiceEntityRepository implements ProvinceRepo
 
         return $qb->getSingleScalarResult();
     }
+
+    /**
+     * @throws NoResultException|NonUniqueResultException
+     */
+    public function first()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->setMaxResults(1)
+            ->getQuery();
+
+        return $qb->getSingleResult();
+    }
 }

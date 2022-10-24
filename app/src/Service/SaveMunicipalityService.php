@@ -21,15 +21,15 @@ class SaveMunicipalityService implements SaveMunicipalityInterface
     /**
      * @throws Exception
      */
-    public function saveMunicipality(string $slug, string $name, float $latitude, float $longitude, int $provinceId): void
+    public function saveMunicipality(string $slug, string $name, string $latitude, $longitude): void
     {
-        $province = $this->provinceRepository->find($provinceId);
+        $province = $this->provinceRepository->first();
 
         $municipality = new Municipality();
         $municipality->setSlug($slug);
         $municipality->setName($name);
-        $municipality->setLatitude($latitude);
-        $municipality->setLongitude($longitude);
+        $municipality->setLatitude((float) $latitude);
+        $municipality->setLongitude((float) $longitude);
         $municipality->setProvince($province);
 
         $errors = $this->validator->validate($municipality);
