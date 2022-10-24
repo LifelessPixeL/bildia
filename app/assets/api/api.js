@@ -98,12 +98,12 @@ function addSubmitEventToNewMunicipalityForm() {
             dataType: 'json',
             data: $(form).serialize(),
             success: function (result) {
-                modalCreate.hide();
                 $(form).trigger("reset");
                 if (result.success === true) {
                     showToastMessage('Municipio creado correctamente');
                     loadMunicipalities();
                 }
+                modalCreate.hide();
             }
         });
         return false;

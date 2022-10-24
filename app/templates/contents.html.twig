@@ -1,0 +1,37 @@
+{# templates/api/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {% include 'partials/header.html.twig' with {'page_title': 'Índice'} %}
+
+        <ul class="nav flex-column mt-5">
+            <li>
+                <span>Prácticos</span>
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/exercise1">Ejercicio 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/exercise2" target="_blank">Ejercicio 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/exercise3">Ejercicio 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span>Documentación API (Swagger)</span>
+                <ul>
+                    <li>
+                        <a class="nav-link" href="/api/doc">Dinámico</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/api/doc.json">JSON</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+{% endblock %}
