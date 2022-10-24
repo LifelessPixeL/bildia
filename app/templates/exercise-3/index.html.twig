@@ -1,0 +1,33 @@
+{# templates/api/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {% include 'partials/message.html.twig' %}
+
+        {% include 'partials/anchor.html.twig' %}
+
+        {% include 'partials/header.html.twig' with {'page_title': 'API Front'} %}
+
+        {% include 'partials/return.html.twig' %}
+
+        <div>
+            <div class="py-5">
+                <h3 class="float-start text-primary ps-3">Municipios</h3>
+                <button class="float-end btn border border-1" id="js-button-add-municipality" title="Añadir municipio">
+                    <span class="text-primary"><i class="fa-solid fa-plus"></i> Añadir municipio</span>
+                </button>
+            </div>
+            {% include 'partials/municipalities-table.html.twig' %}
+        </div>
+        <footer id="footer"></footer>
+    </div>
+{% endblock %}
+
+{% block modals %}
+    {% include 'partials/modals.html.twig' %}
+{% endblock %}
+
+{% block mustache %}
+    {% include 'partials/mustache.html.twig' %}
+{% endblock %}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Prueba Bildia - Rebeca Martín</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+	<style>
+		body {
+			color: #3e689b;
+		}
+		.text-justify {
+			text-align: justify;
+			text-justify: inter-word;
+		}
+		.h-footer {
+			height: 100px;
+			display: inline-grid;
+			align-items: center;
+			text-align: center;
+			background-color: #242415;
+		}
+
+		.fc-w {
+			overflow: auto;
+			max-height: -moz-calc(100vh - 100px);
+			max-height: -webkit-calc(100vh - 100px);
+			max-height: calc(100vh - 100px);
+		}
+
+		.col-left {
+			background-color: #acc5df;
+		}
+
+		.col-right {
+			background-color: #cbdaeb;
+		}
+
+		.header {
+			background-color: #3e689b;
+			font-size: medium;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container fc-w">
+		<header class="header">
+			<h1 class="ps-5 py-5 mb-0 text-white display-5">TITULO</h1>
+		</header>
+		<div class="row m-0 border">
+			<div class="col-3 vh-75 overflow-auto me-4">
+				<ul class="float-start pt-5">
+					<li class="list-group-item border-0 py-1">Menu</li>
+					<li class="list-group-item border-0 py-1">Menu</li>
+					<li class="list-group-item border-0 py-1">Menu</li>
+				</ul>
+				<div class="h-100 float-end py-3">
+					<div class="vr h-100"></div>
+				</div>
+			</div>
+			<div class="col-9 row overflow-scroll">
+				<div class="card-group pt-3 pb-5">
+					<div class="card rounded-0 me-4 col-left">
+						<div class="card-body text-justify">
+							<h5 class="card-title text-white border-bottom border-white pb-3 display-6">CUADRO 1</h5>
+							<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt diam non aliquam pulvinar. Vivamus porttitor, turpis vel porta condimentum, purus erat mattis orci, a.</p>
+							<p class="card-text">Praesent erat arcu, venenatis eleifend iaculis a, rutrum non sem. Fusce vitae sem neque. Nam vel massa tortor.</p>
+						</div>
+					</div>
+					<div class="card rounded-0 ms-4">
+						<div class="card-body text-justify col-right">
+							<h5 class="card-title text-white border-bottom border-white pb-3 display-6">CUADRO 2</h5>
+							<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque tellus hendrerit nunc luctus commodo. Ut sodales leo non lacus facilisis, in cursus nunc lacinia. Nunc dignissim orci quis tincidunt interdum. Vestibulum eget dictum diam. Maecenas maximus dapibus risus.</p>
+							<p class="card-text">Praesent erat arcu, venenatis eleifend iaculis a, rutrum non sem. Fusce vitae sem neque. Nam vel massa tortor. Nulla consequat quis orci nec volutpat. Morbi sed ante neque. Duis volutpat interdum sem, mattis ornare neque facilisis vitae.</p>
+							<p class="card-text">Nam consectetur consectetur mauris nec volutpat. In at neque augue. Cras suscipit pharetra metus, ut sodales tellus consequat quis. Nunc tincidunt metus dapibus leo posuere rhoncus. In justo elit, mattis et euismod ut, varius non erat. Nam faucibus dapibus lectus id efficitur. Pellentesque sagittis cursus ipsum vitae interdum. Etiam vehicula ex nunc.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="footer fixed-bottom h-footer text-white">
+		Pie de página
+	</footer>
+</body>
+</html>

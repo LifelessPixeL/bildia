@@ -1,3 +1,45 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+# config/routes.yaml
+index:
+  path: /
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    # the path of the template to render
+    template: 'contents.html.twig'
+
+    # the response status code (default: 200)
+    statusCode: 200
+
+exercise1:
+  path: /exercise1
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    # the path of the template to render
+    template: 'exercise-1/index.html.twig'
+
+    # the response status code (default: 200)
+    statusCode: 200
+
+exercise2:
+  path: /exercise2
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    # the path of the template to render
+    template: 'exercise-2/index.html'
+
+    # the response status code (default: 200)
+    statusCode: 200
+
+exercise3:
+  path: /exercise3
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    # the path of the template to render
+    template: 'exercise-3/index.html.twig'
+
+    # the response status code (default: 200)
+    statusCode: 200
+
+app.swagger_ui:
+  path: /api/doc
+  methods: GET
+  defaults: { _controller: nelmio_api_doc.controller.swagger_ui }

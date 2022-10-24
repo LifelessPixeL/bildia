@@ -1,0 +1,19 @@
+{# templates/api/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {% include 'partials/header.html.twig' with {'page_title': 'Ejercicio SQL'} %}
+        {% include 'partials/return.html.twig' %}
+
+        <div class="text-center bg-black text-white mt-3">
+            <strong>SELECT</strong> s.name, p.name <br />
+            <strong>FROM</strong> students s <br />
+            <strong>INNER JOIN</strong> provinces p <strong>ON</strong> (p.id = s.id_province) <br />
+            <strong>INNER JOIN</strong> exams e <strong>ON</strong> (e.id_alumno = s.id) <br />
+            <strong>INNER JOIN</strong> subjects su <strong>ON</strong> (su.id = e.id_subject) <br />
+            <strong>GROUP BY</strong> s.id <br />
+            <strong>HAVING MAX</strong>(e.nota) <= 4; <br />
+        </div>
+    </div>
+{% endblock %}
