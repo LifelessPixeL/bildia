@@ -13,16 +13,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class GetProvincesPopulationPercentageController extends AbstractController
 {
     #[Route(
-        '/provinces/percentage',
+        '/provinces/percentage/{provincesIds}',
         name: 'getProvincesPopulationPercentage',
-        methods: ['GET', 'HEAD']
+        methods: ['GET']
     )]
     public function getProvincesPopulationPercentage(
         Request $request,
         ProvincesPopulationPercentageInterface $provincesPopulationPercentageService
     ): ?JsonResponse
     {
-        $provincesIds = json_decode($request->get('provincesIds'));
+        $provincesIds = explode(',', $request->get('provincesIds'));
 
         $provincesPopulationPercentageFromTotal =
             $provincesPopulationPercentageService->getProvincesPopulationPercentage($provincesIds);

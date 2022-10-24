@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Municipality;
 use App\Interface\GetMunicipalitiesInterface;
 use App\Interface\MunicipalityRepositoryInterface;
 
@@ -24,5 +25,10 @@ class GetMunicipalitiesService implements GetMunicipalitiesInterface
         }
 
         return $municipalities;
+    }
+
+    public function getMunicipality(int $municipalityId): Municipality
+    {
+        return $this->municipalityRepository->find($municipalityId);
     }
 }
